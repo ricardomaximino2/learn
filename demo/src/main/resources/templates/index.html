@@ -5,6 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
+<h2 th:text="${message}"></h2>
 	<form action="hello" method="post">
 		Nickname:<input type="text" name="falseName" />
 		Name:<input type="text" name="name" />
@@ -20,10 +21,8 @@
 		<th:block th:each="user : ${users}">
 			<tr>
 				<td th:text="${user.id}">...</td>
+				<td th:text="${user.falseName}">...</td>
 				<td th:text="${user.name}">...</td>
-			</tr>
-			<tr>
-				<td colspan="2" th:text="${user.falseName}">...</td>
 			</tr>
 		</th:block>
 	</table>
