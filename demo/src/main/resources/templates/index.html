@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Hello App</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<form action="hello" method="post">
+		Nickname:<input type="text" name="falseName" />
+		Name:<input type="text" name="name" />
+		<input type="submit" value="Send name" />
+	</form>
+
+	<hr/>
+
+	<p th:text="'Hello, ' + ${falseName} + '!'" />
+
+	<h1>Table</h1>
+	<table border="1">
+		<th:block th:each="user : ${users}">
+			<tr>
+				<td th:text="${user.id}">...</td>
+				<td th:text="${user.name}">...</td>
+			</tr>
+			<tr>
+				<td colspan="2" th:text="${user.falseName}">...</td>
+			</tr>
+		</th:block>
+	</table>
+</body>
+</html>
