@@ -6,9 +6,10 @@
 </head>
 <body>
 <h2 th:text="${message}"></h2>
-	<form action="hello" method="post">
+	<form action="/spring" method="post" enctype="multipart/form-data">
 		Nickname:<input type="text" name="falseName" />
-		Name:<input type="text" name="name" />
+		Name:<input type="text" name="name" /><br/>
+		<input type="file" name="file"/><br/>
 		<input type="submit" value="Send name" />
 	</form>
 
@@ -17,6 +18,9 @@
 	<p th:text="'Hello, ' + ${falseName} + '!'" />
 
 	<h1>Table</h1>
+	<div th:if="${message}">
+		<h2 th:text="${message}"></h2>
+	</div>
 	<table border="1">
 		<th:block th:each="user : ${users}">
 			<tr>
@@ -26,5 +30,17 @@
 			</tr>
 		</th:block>
 	</table>
+	<h2>List All Uploaded Files</h2>
+	<div>
+		<ul>
+			<li th:each="file : ${files}">
+				<a th:href="${file}" th:text="${file}"></a>
+			</li>
+		</ul>
+	</div>
+	<div>
+		<h3 th:text="${totalFiles}"></h3>
+		<a href="/">Back to UploadForm!</a>
+	</div>
 </body>
 </html>
