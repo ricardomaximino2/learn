@@ -1,28 +1,36 @@
 package com.example.demo.controllers;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
+import java.io.PrintWriter;
 import java.net.URLConnection;
-import java.util.ArrayList;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
+import java.util.NoSuchElementException;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.FileCopyUtils;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.UserRepository;
 import com.example.demo.beans.User;
+import com.example.demo.services.UserService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -33,57 +41,90 @@ import io.swagger.annotations.ApiResponses;
 @RequestMapping("/rest")
 @RestController
 public class MyRest {
+	private final Logger log = LoggerFactory.getLogger(MyRest.class);
 
 	@Autowired
-	private UserRepository userRepository;
+	private UserService userService;
+	
+	@PostMapping(value="/user")
+	public User createUser(@ModelAttribute User user, BindingResult result) {
+		if(result.hasErrors()) {
+			log.info(result.getObjectName());
+		}
+		return userService.save(user);
+	}
+	
+	@GetMapping(value = "/user/{id}")
+	public User getUserById(@PathVariable(value = "id", required = true) long id) {
+		return userService.getUserById(id);
+	}
+	
+	@DeleteMapping(value = "/user/{id}")
+	public boolean deleteUserById(@PathVariable(value = "id", required = true) long id) {
+		return userService.deleteUserById(id);
+	}
 
 	@GetMapping(path="/user")
 	@ApiOperation(value="Provide all users from the server without pagination")
-	@ApiResponses(value={ @ApiResponse(code=200,message="Everything is alright"),@ApiResponse(code=100,message="Something look unfamilire")})
+	@ApiResponses(value={ @ApiResponse(code=200,message="Everything is alright"),@ApiResponse(code=404,message="Something look unfamilire"),@ApiResponse(code=202,message="If the list is empty")})
 	public List<User> getAll() {
-		List<User> list = new ArrayList<>();
-		for (User user : userRepository.findAll()) {
-			list.add(user);
-		}
-		return list;
+		return userService.getAllUsers();
 	}
 
-	@GetMapping(path = "/user/pdf", produces = "application/pdf")
-	public List<User> getPdf(HttpServletResponse response) {
-		// response.setContentType("application/pdf");
-
-		List<User> list = new ArrayList<>();
-		for (User user : userRepository.findAll()) {
-			list.add(user);
+	@GetMapping(path = "/user/downloa/pdf", produces = "application/pdf")
+	public List<User> downloadPdf(HttpServletResponse response) {
+		return userService.getAllUsers();
+	}
+	
+	@GetMapping(value="/user/download/txt", produces="txt/xml")
+	public void downloadTxt(HttpServletResponse response) throws IOException {
+		List<User> list = userService.getAllUsers();
+		PrintWriter print = new PrintWriter(setResponse(response, list));
+		for(User user : list) {
+			print.println(user);
 		}
-		return list;
+		print.close();
 	}
 
-	@RequestMapping(path = "/user/download", method = RequestMethod.GET)
-	public void download(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		 File file = new File("C:\\Users\\Ricardo\\Pictures\\sin nome\\Immagine 046.jpg");
-		InputStream inputStream = new BufferedInputStream(new FileInputStream(file));
-		String mineType = URLConnection.guessContentTypeFromStream(inputStream);
-
-		if (mineType == null) {
-			mineType = "application/octet-stream";
-		}
-
-		response.setContentType(mineType);
-		response.setContentLength((int) file.length());
-		response.setHeader("Content-Diposition", String.format("attachment; filename=\"%s\"", file.getName()));
-
-		FileCopyUtils.copy(inputStream, response.getOutputStream());
+	@RequestMapping(path = "/user/download/{file}.{ext}", method = RequestMethod.GET)
+	public void download(@PathVariable String file, @PathVariable String ext,HttpServletRequest request, HttpServletResponse response) throws IOException {
+		Path path = Paths.get("C:/Users/Ricardo/Pictures/sin nome/" + file + "." + ext);
+		String contentType = URLConnection.guessContentTypeFromName(path.getFileName().toString());
+		if (contentType == null) contentType = "application/octet-stream";
+		response.setContentType(contentType);
+		response.setContentLengthLong(Files.size(path));
+		response.setHeader("Content-Diposition", "attachment; filename=" + path.getFileName());
+		Files.copy(path, response.getOutputStream());
 	}
 
 	@ExceptionHandler(IOException.class)
-	public String handleErros(Exception ex) {
-		return ex.getMessage();
+	public ResponseEntity<String> handleIOErros(Exception ex) {
+		return new ResponseEntity<String>(ex.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
 	}
-
-	@GetMapping(value = "/user/{id}")
-	public User findUser(@RequestParam(value = "id", required = true) long id) {
-		return userRepository.findOne(id);
+	
+	@ExceptionHandler(NoSuchElementException.class)
+	public ResponseEntity<String> handleNoSuchElementErros(Exception ex) {
+		return new ResponseEntity<String>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+	}
+	
+	private ServletOutputStream setResponse(HttpServletResponse response,List<User> list) throws IOException {
+		response.setContentLength(countLength(list));
+		response.setContentType("txt/xml");
+		response.setCharacterEncoding("ISO-8859-1");
+		response.setStatus(200);
+		response.addHeader("Content-Disposition", "attachment; filename=download.txt");
+		return response.getOutputStream();
+	}
+	
+	private int countLength(List<User> list) {
+		int length = 0;
+		for(User user : list) {
+			length += user.toString().length();
+			for(Character c : user.toString().toCharArray()) {
+				if(c.hashCode()>160) length++;
+			}
+		}
+		return length + (list.size()*2);
 	}
 
 }

@@ -10,8 +10,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="2" language="java" name="com.example.demo.UserRepository" project="demo" 
-    file="/demo/src/main/java/com/example/demo/UserRepository.java" binary="false" corner="BOTTOM_RIGHT">    
+  <interface id="2" language="java" name="com.example.demo.repository.UserRepository" project="demo" 
+    file="/demo/src/main/java/com/example/demo/repository/UserRepository.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="63" width="112" x="747" y="100"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -37,8 +37,9 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="com.example.demo.controllers.MyController" project="demo" 
-    file="/demo/src/main/java/com/example/demo/controllers/MyController.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="5" language="java" name="com.example.demo.controllers.ThymeleafController" project="demo" 
+    file="/demo/src/main/java/com/example/demo/controllers/ThymeleafController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="799" y="357"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -47,17 +48,25 @@
     </display>  
   </class>  
   <association id="6">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="7" name="userRepository"/>      
-      <multiplicity id="8" minimum="0" maximum="1"/>    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="7" name="userRepository">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="8" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="9">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="10" name="userRepository"/>      
-      <multiplicity id="11" minimum="0" maximum="1"/>    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="10" name="userService">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="11" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  

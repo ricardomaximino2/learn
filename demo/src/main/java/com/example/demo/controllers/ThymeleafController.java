@@ -9,26 +9,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.demo.UserRepository;
 import com.example.demo.beans.User;
+import com.example.demo.repository.UserRepository;
 
 @Controller
-public class MyController {
+public class ThymeleafController {
 	
 	@Autowired
 	private UserRepository userRepository;
 	
-	@RequestMapping("/hello")
+	@RequestMapping("/")
 	public String hello(Model model) {
 		model.addAttribute("hello", "Hello");
 		return "index";
 	}
 
 	
-	@RequestMapping(path="/hello",method= RequestMethod.POST)
-	public String helloWithName(Model model,@RequestParam(required=true,defaultValue="Programmer") String falseName,@ModelAttribute User user,BindingResult userBinding) {
+	@RequestMapping(path="/",method= RequestMethod.POST)
+	public String helloWithName(Model model,@RequestParam(required=true,defaultValue="Programmer") String nickname,@ModelAttribute User user,BindingResult userBinding) {
 		userRepository.save(user);
-		model.addAttribute("falseName", falseName);
+		model.addAttribute("nickname", nickname);
 		model.addAttribute("user",user);
 		model.addAttribute("users",userRepository.findAll());
 		return "index";

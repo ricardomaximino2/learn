@@ -6,6 +6,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * @author Ricardo
+ *
+ */
 @Entity
 @Table(name="users")
 public class User {
@@ -14,7 +18,7 @@ public class User {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	private String name;
-	private String falseName;
+	private String nickname;
 	
 	public User() {}
 	
@@ -31,12 +35,16 @@ public class User {
 		this.name = name;
 	}
 
-	public String getFalseName() {
-		return falseName;
+	public String getNickname() {
+		return nickname;
 	}
 
-	public void setFalseName(String falseName) {
-		this.falseName = falseName;
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", nickname=" + nickname + "]";
+	}
 }
