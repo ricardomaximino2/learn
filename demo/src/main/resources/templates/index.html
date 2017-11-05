@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>Hello App</title>
@@ -6,16 +6,24 @@
 </head>
 <body>
 <h2 th:text="${message}"></h2>
-	<form action="/spring" method="post" enctype="multipart/form-data">
-		Nickname:<input type="text" name="falseName" />
-		Name:<input type="text" name="name" /><br/>
-		<input type="file" name="file"/><br/>
+
+	<form action="/" method="post" enctype="multipart/form-data">
+		Nickname:<input type="text" name="nickname" />
+		Name:<input type="text" name="name" />
 		<input type="submit" value="Send name" />
+	</form>
+	
+	<hr/>
+	
+	<h1>Upload File</h1>
+	<form action="/spring" method="post" enctype="multipart/form-data">
+		<input type="file" name="file"/>
+		<input type="submit" value="Send file" />
 	</form>
 
 	<hr/>
 
-	<p th:text="'Hello, ' + ${falseName} + '!'" />
+	<p th:text="'Hello, ' + ${nickname} + '!'" />
 
 	<h1>Table</h1>
 	<div th:if="${message}">
@@ -25,7 +33,7 @@
 		<th:block th:each="user : ${users}">
 			<tr>
 				<td th:text="${user.id}">...</td>
-				<td th:text="${user.falseName}">...</td>
+				<td th:text="${user.nickname}">...</td>
 				<td th:text="${user.name}">...</td>
 			</tr>
 		</th:block>
@@ -41,6 +49,9 @@
 	<div>
 		<h3 th:text="${totalFiles}"></h3>
 		<a href="/">Back to UploadForm!</a>
+	</div>
+	<div>
+		<a href="/rest/user/download/txt">Download TXT file</a>
 	</div>
 </body>
 </html>
