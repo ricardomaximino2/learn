@@ -18,14 +18,15 @@ public class ThymeleafController {
 	@Autowired
 	private UserRepository userRepository;
 	
-	@RequestMapping("/")
+	@RequestMapping(value= {"/","/home"})
 	public String hello(Model model) {
 		model.addAttribute("hello", "Hello");
+		model.addAttribute("users",userRepository.findAll());
 		return "index";
 	}
 
 	
-	@RequestMapping(path="/",method= RequestMethod.POST)
+	@RequestMapping(value= {"/","/home"},method= RequestMethod.POST)
 	public String helloWithName(Model model,@RequestParam(required=true,defaultValue="Programmer") String nickname,@ModelAttribute User user,BindingResult userBinding) {
 		userRepository.save(user);
 		model.addAttribute("nickname", nickname);

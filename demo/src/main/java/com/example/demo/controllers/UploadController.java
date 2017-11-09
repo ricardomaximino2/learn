@@ -27,12 +27,8 @@ public class UploadController {
  
 	List<String> files = new ArrayList<String>();
  
-	@GetMapping("/spring")
-	public String listUploadedFiles(Model model) {
-		return "index";
-	}
  
-	@PostMapping("/spring")
+	@PostMapping("/upload")
 	public String handleFileUpload(@RequestParam("file") MultipartFile file, Model model) {
 		try {
 			storageService.store(file);
@@ -51,7 +47,7 @@ public class UploadController {
 		return "index";
 	}
  
-	@GetMapping("/gellallfiles")
+	@GetMapping("/upload")
 	public String getListFiles(Model model) {
 		model.addAttribute("files",
 				files.stream()
