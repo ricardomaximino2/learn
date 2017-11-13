@@ -30,7 +30,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.beans.User;
+import com.example.demo.services.PdfService;
 import com.example.demo.services.UserService;
+import com.itextpdf.text.DocumentException;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -43,8 +45,11 @@ import io.swagger.annotations.ApiResponses;
 public class MyRest {
 	private final Logger log = LoggerFactory.getLogger(MyRest.class);
 
+	private static final String PDF = "dowload.pdf";
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private PdfService pdfService;
 	
 	@PostMapping(value="/user")
 	public User createUser(@ModelAttribute User user, BindingResult result) {
@@ -66,14 +71,19 @@ public class MyRest {
 
 	@GetMapping(path="/user")
 	@ApiOperation(value="Provide all users from the server without pagination")
-	@ApiResponses(value={ @ApiResponse(code=200,message="Everything is alright"),@ApiResponse(code=404,message="Something look unfamilire"),@ApiResponse(code=202,message="If the list is empty")})
+	@ApiResponses(value={ @ApiResponse(code=200,message="Everything is alright"),
+	@ApiResponse(code=404,message="Something look unfamilire"),
+	@ApiResponse(code=202,message="If the list is empty")})
 	public List<User> getAll() {
 		return userService.getAllUsers();
 	}
 
 	@GetMapping(path = "/user/downloa/pdf", produces = "application/pdf")
-	public List<User> downloadPdf(HttpServletResponse response) {
-		return userService.getAllUsers();
+	public void downloadPdf(HttpServletResponse response) throws IOException, DocumentException {
+		Path path = Paths.get(PDF);
+		pdfService.createPdf();
+		ServletOutputStream out = setResponsePdf(response);
+		Files.copy(path, out);
 	}
 	
 	@GetMapping(value="/user/download/txt", produces="txt/xml")
@@ -107,6 +117,17 @@ public class MyRest {
 		return new ResponseEntity<String>(ex.getMessage(), HttpStatus.BAD_REQUEST);
 	}
 	
+	private ServletOutputStream setResponsePdf(HttpServletResponse response) throws IOException {
+		Path path = Paths.get(PDF);
+		response.setContentLength((int)Files.size(path));
+		System.out.println(Files.size(path));
+		response.setContentType("application/pdf");
+		response.setCharacterEncoding("ISO-8859-1");
+		response.setStatus(200);
+		response.addHeader("Content-Disposition", "attachment; filename=download.pdf");
+		return response.getOutputStream();
+	}
+	
 	private ServletOutputStream setResponse(HttpServletResponse response,List<User> list) throws IOException {
 		response.setContentLength(countLength(list));
 		response.setContentType("txt/xml");
@@ -119,10 +140,7 @@ public class MyRest {
 	private int countLength(List<User> list) {
 		int length = 0;
 		for(User user : list) {
-			length += user.toString().length();
-			for(Character c : user.toString().toCharArray()) {
-				if(c.hashCode()>160) length++;
-			}
+			length += user.toString().getBytes().length;
 		}
 		return length + (list.size()*2);
 	}
