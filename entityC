@@ -1,0 +1,617 @@
+@PartenonBean(transaction="IZ49", operation="C", version="00003")
+public class InputTransactionIZ49 {
+
+//INPUT DATA
+
+//String(1)
+@PartenonField("ACCION")
+public String accion;
+
+//BigDecimal(4, 0)
+@PartenonField("ANNOFIS")
+public BigDecimal annofis;
+
+//String(10)
+@PartenonField("CDCTTO")
+public String cdctto;
+
+//String(3)
+@PartenonField("CDMODFIS")
+public String cdmodfis;
+
+//Date(8)
+@PartenonField("CFECONTA")
+public Date cfeconta;
+
+//BigDecimal(2, 0)
+@PartenonField("CNATRIB")
+public BigDecimal cnatrib;
+
+//BigDecimal(2, 0)
+@PartenonField("CNATRTOT")
+public BigDecimal cnatrtot;
+
+//String(4)
+@PartenonField("CODCESTA")
+public String codcesta;
+
+//String(2)
+@PartenonField("CODEMIS")
+public String codemis;
+
+//String(1)
+@PartenonField("CODIDIO")
+public String codidio;
+
+//String(3)
+@PartenonField("CODMONSW")
+public String codmonsw;
+
+//BigDecimal(9, 0)
+@PartenonField("CODPERS")
+public BigDecimal codpers;
+
+//String(10)
+@PartenonField("CODVAINT")
+public String codvaint;
+
+//BigDecimal(3, 0)
+@PartenonField("CONTITUL")
+public BigDecimal contitul;
+
+//String(2)
+@PartenonField("DGCTROL")
+public String dgctrol;
+
+//String(4)
+@PartenonField("EMPCESTA")
+public String empcesta;
+
+//Date(8)
+@PartenonField("FECCONTA")
+public Date fecconta;
+
+//Date(8)
+@PartenonField("FECEJER")
+public Date fecejer;
+
+//String(2)
+@PartenonField("HCDRUPTU")
+public String hcdruptu;
+
+//String(2)
+@PartenonField("HCODEMIS")
+public String hcodemis;
+
+//String(10)
+@PartenonField("HCODVAIN")
+public String hcodvain;
+
+//String(3)
+@PartenonField("HITOMON")
+public String hitomon;
+
+//String(38)
+@PartenonField("HPLANT01")
+public String hplant01;
+
+//String(38)
+@PartenonField("HPLANT02")
+public String hplant02;
+
+//String(38)
+@PartenonField("HPLANT03")
+public String hplant03;
+
+//String(38)
+@PartenonField("HPLANT04")
+public String hplant04;
+
+//String(38)
+@PartenonField("HPLANT05")
+public String hplant05;
+
+//String(38)
+@PartenonField("HPLANT06")
+public String hplant06;
+
+//String(38)
+@PartenonField("HPLANT07")
+public String hplant07;
+
+//String(38)
+@PartenonField("HPLANT08")
+public String hplant08;
+
+//String(38)
+@PartenonField("HPLANT09")
+public String hplant09;
+
+//String(38)
+@PartenonField("HPLANT10")
+public String hplant10;
+
+//String(38)
+@PartenonField("HPLANT11")
+public String hplant11;
+
+//String(38)
+@PartenonField("HPLANT12")
+public String hplant12;
+
+//String(38)
+@PartenonField("HPLANT13")
+public String hplant13;
+
+//String(38)
+@PartenonField("HPLANT14")
+public String hplant14;
+
+//String(38)
+@PartenonField("HPLANT15")
+public String hplant15;
+
+//String(38)
+@PartenonField("HPLANT16")
+public String hplant16;
+
+//String(38)
+@PartenonField("HPLANT17")
+public String hplant17;
+
+//String(38)
+@PartenonField("HPLANT18")
+public String hplant18;
+
+//String(38)
+@PartenonField("HPLANT19")
+public String hplant19;
+
+//String(38)
+@PartenonField("HPLANT20")
+public String hplant20;
+
+//BigDecimal(18, 5)
+@PartenonField("HTOTAL01")
+public BigDecimal htotal01;
+
+//BigDecimal(18, 5)
+@PartenonField("HTOTAL02")
+public BigDecimal htotal02;
+
+//BigDecimal(18, 5)
+@PartenonField("HTOTAL03")
+public BigDecimal htotal03;
+
+//BigDecimal(18, 5)
+@PartenonField("HTOTAL04")
+public BigDecimal htotal04;
+
+//BigDecimal(18, 5)
+@PartenonField("HTOTAL05")
+public BigDecimal htotal05;
+
+//BigDecimal(18, 5)
+@PartenonField("HTOTAL06")
+public BigDecimal htotal06;
+
+//BigDecimal(18, 5)
+@PartenonField("HTOTAL07")
+public BigDecimal htotal07;
+
+//BigDecimal(18, 5)
+@PartenonField("HTOTAL08")
+public BigDecimal htotal08;
+
+//BigDecimal(18, 5)
+@PartenonField("HTOTAL09")
+public BigDecimal htotal09;
+
+//BigDecimal(18, 5)
+@PartenonField("HTOTAL10")
+public BigDecimal htotal10;
+
+//BigDecimal(18, 5)
+@PartenonField("HTOTAL11")
+public BigDecimal htotal11;
+
+//BigDecimal(18, 5)
+@PartenonField("HTOTAL12")
+public BigDecimal htotal12;
+
+//BigDecimal(18, 5)
+@PartenonField("HTOTAL13")
+public BigDecimal htotal13;
+
+//BigDecimal(18, 5)
+@PartenonField("HTOTAL14")
+public BigDecimal htotal14;
+
+//BigDecimal(18, 5)
+@PartenonField("HTOTAL15")
+public BigDecimal htotal15;
+
+//BigDecimal(18, 5)
+@PartenonField("HTOTAL16")
+public BigDecimal htotal16;
+
+//BigDecimal(18, 5)
+@PartenonField("HTOTAL17")
+public BigDecimal htotal17;
+
+//BigDecimal(18, 5)
+@PartenonField("HTOTAL18")
+public BigDecimal htotal18;
+
+//BigDecimal(18, 5)
+@PartenonField("HTOTAL19")
+public BigDecimal htotal19;
+
+//BigDecimal(18, 5)
+@PartenonField("HTOTAL20")
+public BigDecimal htotal20;
+
+//String(4)
+@PartenonField("IDCENT")
+public String idcent;
+
+//String(7)
+@PartenonField("IDCONTR")
+public String idcontr;
+
+//String(4)
+@PartenonField("IDEMPR")
+public String idempr;
+
+//String(3)
+@PartenonField("IDPROD")
+public String idprod;
+
+//String(1)
+@PartenonField("IDTITPRO")
+public String idtitpro;
+
+//BigDecimal(3, 0)
+@PartenonField("NUMESECU")
+public BigDecimal numesecu;
+
+//BigDecimal(4, 0)
+@PartenonField("NUMOPE")
+public BigDecimal numope;
+
+//BigDecimal(3, 0)
+@PartenonField("SECUENC")
+public BigDecimal secuenc;
+
+//String(2)
+@PartenonField("TIPINTER")
+public String tipinter;
+
+//String(1)
+@PartenonField("TIPOPERS")
+public String tipopers;
+
+//String(2)
+@PartenonField("TISOPORT")
+public String tisoport;
+
+}
+
+
+public class OutputTransactionIZ49 {
+
+//OUTPUT DATA
+
+//String(1)
+@PartenonField("ACCION")
+public String accion;
+
+//BigDecimal(4, 0)
+@PartenonField("ANNOFIS")
+public BigDecimal annofis;
+
+//String(2)
+@PartenonField("CDRUPTUR")
+public String cdruptur;
+
+//Date(8)
+@PartenonField("CFECONTA")
+public Date cfeconta;
+
+//BigDecimal(2, 0)
+@PartenonField("CNATRIB")
+public BigDecimal cnatrib;
+
+//BigDecimal(2, 0)
+@PartenonField("CNATRTOT")
+public BigDecimal cnatrtot;
+
+//String(2)
+@PartenonField("CODEMIS")
+public String codemis;
+
+//String(1)
+@PartenonField("CODIDIO")
+public String codidio;
+
+//String(3)
+@PartenonField("CODMONSW")
+public String codmonsw;
+
+//String(10)
+@PartenonField("CODVAINT")
+public String codvaint;
+
+//String(14)
+@PartenonField("C49EFEUN")
+public List<String> c49efeun;
+
+//String(10)
+@PartenonField("C49FECOP")
+public List<String> c49fecop;
+
+//String(13)
+@PartenonField("C49GASTO")
+public List<String> c49gasto;
+
+//String(14)
+@PartenonField("C49IMPEF")
+public List<String> c49impef;
+
+//String(14)
+@PartenonField("C49IMPNT")
+public List<String> c49impnt;
+
+//String(12)
+@PartenonField("C49ISIN")
+public List<String> c49isin;
+
+//String(30)
+@PartenonField("C49NOMVL")
+public List<String> c49nomvl;
+
+//String(26)
+@PartenonField("C49NOMVS")
+public List<String> c49nomvs;
+
+//String(13)
+@PartenonField("C49NUMDE")
+public List<String> c49numde;
+
+//String(2)
+@PartenonField("C49NUTIT")
+public List<String> c49nutit;
+
+//String(14)
+@PartenonField("C49RETEN")
+public List<String> c49reten;
+
+//String(2)
+@PartenonField("C49TPDTO")
+public List<String> c49tpdto;
+
+//String(1)
+@PartenonField("C49TPINT")
+public List<String> c49tpint;
+
+//String(15)
+@PartenonField("DSIDIOMA")
+public String dsidioma;
+
+//Date(8)
+@PartenonField("FECCONTA")
+public Date fecconta;
+
+//Date(8)
+@PartenonField("FECEJER")
+public Date fecejer;
+
+//String(2)
+@PartenonField("HCDRUPTU")
+public String hcdruptu;
+
+//String(2)
+@PartenonField("HCODEMIS")
+public String hcodemis;
+
+//String(10)
+@PartenonField("HCODVAIN")
+public String hcodvain;
+
+//String(3)
+@PartenonField("HITOMON")
+public String hitomon;
+
+//String(38)
+@PartenonField("HPLANT01")
+public String hplant01;
+
+//String(38)
+@PartenonField("HPLANT02")
+public String hplant02;
+
+//String(38)
+@PartenonField("HPLANT03")
+public String hplant03;
+
+//String(38)
+@PartenonField("HPLANT04")
+public String hplant04;
+
+//String(38)
+@PartenonField("HPLANT05")
+public String hplant05;
+
+//String(38)
+@PartenonField("HPLANT06")
+public String hplant06;
+
+//String(38)
+@PartenonField("HPLANT07")
+public String hplant07;
+
+//String(38)
+@PartenonField("HPLANT08")
+public String hplant08;
+
+//String(38)
+@PartenonField("HPLANT09")
+public String hplant09;
+
+//String(38)
+@PartenonField("HPLANT10")
+public String hplant10;
+
+//String(38)
+@PartenonField("HPLANT11")
+public String hplant11;
+
+//String(38)
+@PartenonField("HPLANT12")
+public String hplant12;
+
+//String(38)
+@PartenonField("HPLANT13")
+public String hplant13;
+
+//String(38)
+@PartenonField("HPLANT14")
+public String hplant14;
+
+//String(38)
+@PartenonField("HPLANT15")
+public String hplant15;
+
+//String(38)
+@PartenonField("HPLANT16")
+public String hplant16;
+
+//String(38)
+@PartenonField("HPLANT17")
+public String hplant17;
+
+//String(38)
+@PartenonField("HPLANT18")
+public String hplant18;
+
+//String(38)
+@PartenonField("HPLANT19")
+public String hplant19;
+
+//String(38)
+@PartenonField("HPLANT20")
+public String hplant20;
+
+//BigDecimal(18, 5)
+@PartenonField("HTOTAL01")
+public BigDecimal htotal01;
+
+//BigDecimal(18, 5)
+@PartenonField("HTOTAL02")
+public BigDecimal htotal02;
+
+//BigDecimal(18, 5)
+@PartenonField("HTOTAL03")
+public BigDecimal htotal03;
+
+//BigDecimal(18, 5)
+@PartenonField("HTOTAL04")
+public BigDecimal htotal04;
+
+//BigDecimal(18, 5)
+@PartenonField("HTOTAL05")
+public BigDecimal htotal05;
+
+//BigDecimal(18, 5)
+@PartenonField("HTOTAL06")
+public BigDecimal htotal06;
+
+//BigDecimal(18, 5)
+@PartenonField("HTOTAL07")
+public BigDecimal htotal07;
+
+//BigDecimal(18, 5)
+@PartenonField("HTOTAL08")
+public BigDecimal htotal08;
+
+//BigDecimal(18, 5)
+@PartenonField("HTOTAL09")
+public BigDecimal htotal09;
+
+//BigDecimal(18, 5)
+@PartenonField("HTOTAL10")
+public BigDecimal htotal10;
+
+//BigDecimal(18, 5)
+@PartenonField("HTOTAL11")
+public BigDecimal htotal11;
+
+//BigDecimal(18, 5)
+@PartenonField("HTOTAL12")
+public BigDecimal htotal12;
+
+//BigDecimal(18, 5)
+@PartenonField("HTOTAL13")
+public BigDecimal htotal13;
+
+//BigDecimal(18, 5)
+@PartenonField("HTOTAL14")
+public BigDecimal htotal14;
+
+//BigDecimal(18, 5)
+@PartenonField("HTOTAL15")
+public BigDecimal htotal15;
+
+//BigDecimal(18, 5)
+@PartenonField("HTOTAL16")
+public BigDecimal htotal16;
+
+//BigDecimal(18, 5)
+@PartenonField("HTOTAL17")
+public BigDecimal htotal17;
+
+//BigDecimal(18, 5)
+@PartenonField("HTOTAL18")
+public BigDecimal htotal18;
+
+//BigDecimal(18, 5)
+@PartenonField("HTOTAL19")
+public BigDecimal htotal19;
+
+//BigDecimal(18, 5)
+@PartenonField("HTOTAL20")
+public BigDecimal htotal20;
+
+//String(4)
+@PartenonField("IDCENT")
+public String idcent;
+
+//String(7)
+@PartenonField("IDCONTR")
+public String idcontr;
+
+//String(4)
+@PartenonField("IDEMPR")
+public String idempr;
+
+//String(3)
+@PartenonField("IDPROD")
+public String idprod;
+
+//BigDecimal(3, 0)
+@PartenonField("NUMESECU")
+public BigDecimal numesecu;
+
+//BigDecimal(4, 0)
+@PartenonField("NUMOPE")
+public BigDecimal numope;
+
+//BigDecimal(3, 0)
+@PartenonField("SECUENC")
+public BigDecimal secuenc;
+
+//String(2)
+@PartenonField("TISOPORT")
+public String tisoport;
+
+}
