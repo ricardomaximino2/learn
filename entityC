@@ -1,4 +1,4 @@
-@PartenonBean(transaction="IZ49", operation="C", version="00003")
+@PartenonBean(transaction="IZ49", operation="C", version="00001")
 public class InputTransactionIZ49 {
 
 //INPUT DATA
@@ -310,10 +310,6 @@ public String accion;
 @PartenonField("ANNOFIS")
 public BigDecimal annofis;
 
-//String(2)
-@PartenonField("CDRUPTUR")
-public String cdruptur;
-
 //Date(8)
 @PartenonField("CFECONTA")
 public Date cfeconta;
@@ -386,9 +382,9 @@ public List<String> c49nutit;
 @PartenonField("C49RETEN")
 public List<String> c49reten;
 
-//String(2)
-@PartenonField("C49TPDTO")
-public List<String> c49tpdto;
+//String(1)
+@PartenonField("C49TPDAT")
+public List<String> c49tpdat;
 
 //String(1)
 @PartenonField("C49TPINT")
